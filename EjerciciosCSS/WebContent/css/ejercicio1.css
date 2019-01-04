@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+
+body {
+  	background-color: #CFC;
+  	color: #00F;
+	font-family: georgia, cambria, serif;
+  	font-size: 16px;
+}
+
+h1{
+	color: #F00;
+	font-family: Verdana, calibri, sans-serif;
+  	font-size: 32px;
+}
+
+h2{
+	color: #A00;
+	font-family: Verdana, calibri, sans-serif;
+  	font-size: 24px;
+}
+
+ul li span{
+	color: #060;
+}
+
+p b span {
+	font-size: 20px;
+}
+
+p em span{ 
+	color: #FFF;
+	background-color: #000;
+}
+
+ul li em span{
+	color: #FFF;
+	background-color: #000;
+}
