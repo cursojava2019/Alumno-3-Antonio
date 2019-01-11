@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="initial-scale=1.0">
+	<title>Ejercicio Saludo</title>
+	<script>
+		var x = null;
+		var momentoActual = null;
+		var hora = null;
+		
+		function Saludo(){
+			x = document.getElementsByName("saludo")[0].value;
+  			momentoActual = new Date() 
+ 		   	hora = momentoActual.getHours()
+  		   	if (hora >= 7 && hora <= 11){
+  		   		document.write(x+" buenos días");
+  		   	} else if (hora >=12 && hora <= 20){
+  		   			document.write(x+" buenas tardes");
+  		   			} else {
+ 		   				document.write(x+" buenas noches");
+  		   			}
+  		   		
+		}
+	
+	</script>
+
+	</head>
+	<body>
+		<form name="form" action="" method="get">
+			Introduzca su nombre: <input type="text" name="saludo">
+		</form>
+		<button onClick="Saludo()">Enviar</button>
+	</body>
+</html>
