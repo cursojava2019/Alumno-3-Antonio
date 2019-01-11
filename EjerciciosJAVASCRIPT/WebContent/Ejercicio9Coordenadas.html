@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ 	<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="initial-scale=1.0">
+	<title>Coordenadas del ratón</title>
+	<script>
+		function coordenadas(event) {
+		 	x=event.clientX;
+			y=event.clientY;
+		 
+		 	document.getElementById("x").value = x;
+		 	document.getElementById("y").value = y;
+		 
+		}
+	</script>
+	</head>
+	<body onMouseMove="coordenadas(event)">
+		<form action="#">
+			<label for="x">X: </label><input type="text" id="x">
+			<label for="y">Y: </label><input type="text" id="y">
+		</form>
+
+	</body>
+</html>

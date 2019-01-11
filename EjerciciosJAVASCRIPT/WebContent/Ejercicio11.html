@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="initial-scale=1.0">
+	<title>Comprobación entrada de número</title>
+	<script>
+	
+		var x = null;
+		
+		function comprobar(){
+			x = document.getElementsByName("numero")[0].value;
+			if (x <= 0 || x >= 101){
+				document.write("Has introducido el número "+x+". Así que no está en ese rango");
+			} else if (x >= 1 && x <= 100){
+				document.write("Has introducido el número "+x+". Perfecto. Ya te puedes ir");
+			}
+		}
+	
+	</script>
+	</head>
+	<body>
+		<h2 align="center">Formulario</h2>
+		<form name="form" action="" method="get">
+			<h4>Introduce un número comprendido entre 1 y 100</h4>
+			<input type="text" name="numero">
+		</form>
+		<button onClick="comprobar()">Enviar</button>
+
+	</body>
+</html>

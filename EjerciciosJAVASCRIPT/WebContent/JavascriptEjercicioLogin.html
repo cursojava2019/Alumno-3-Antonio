@@ -5,9 +5,15 @@
 	
 	<title>Insertar login</title>
 	<script>
+	
+		x = null;
+		y = null;
+		
 		function acceso(){
-			if (document.form.usuario.value == "Antonio") {
-				document.form.submit(); //document.write("Hola tío, qué pasa?");
+			x = document.getElementsByName("usuario")[0].value;
+			y = document.getElementsByName("contrasena")[0].value;
+			if (x == "Antonio" && y == "123") {
+				document.write("Hola tío, qué pasa?");
 			} else {
 				document.write("Y tú quién eres?");
 			}
@@ -17,9 +23,10 @@
 	<body>
 		<div align="center">
 			<h2>Login</h2>
+			<h6>Para facilitar el acceso, el usuario es 'Antonio' y la contraseña es '123'</h6>
 			<form action="/Reloj.html">
-			<label>Usuario: <input type="text" id="usuario" name="usuario"/></label>
-			<label>Contraseña: <input type="password" id="contrasena" name="contrasena"/>
+			<label>Usuario: <input type="text" name="usuario"/></label>
+			<label>Contraseña: <input type="password" name="contrasena"/>
 			<input type="submit" name="enviar" value="Enviar" onClick="acceso()"/></label>
 			</form>
 		</div>
