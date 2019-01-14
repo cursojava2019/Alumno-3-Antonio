@@ -1,0 +1,63 @@
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>TEST</title>
+	<script>
+		function resultado() {
+			var p1, p2, p3, p4, nota;
+ 
+			<!-- 1ª pregunta -->
+			if (document.getElementById('p11').checked==true) {
+				p1 = 1
+				}
+				else {p1=0}
+			<!-- 2ª pregunta -->
+			if (document.getElementById('p22').checked==true) {
+				p2 = 1
+				}
+				else {p2=0}
+			<!-- 3ª pregunta -->
+			if (document.getElementById('p33').checked==true) {
+				p3 = 1
+				}
+				else {p3=0}
+			<!-- 4ª pregunta -->
+			if (document.getElementById('p43').checked==true) {
+				p4 = 1
+				}
+				else {p4=0}
+ 
+			nota = p1+p2+p3+p4;
+			alert(" Aciertos: " + nota);
+			location.reload();
+		}
+	</script>
+	</head>
+	<body>
+		<h2 align="center">T E S T</h2>
+		<hr>
+		<form style="font:normal 16px sans-serif">
+			<p>¿Cuánto es el resultado a la suma de 2+2?</p>
+			<p onclick="this.style.color='#00FF00'"><input type="radio" name="pregunta1" id="p11"> 4</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta1" id="p12"> 8</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta1" id="p13"> 16</p>
+ 
+			<p>¿De qué color es el caballo blanco de Santiago?</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta2" id="p21"> Marrón.</p>
+			<p onclick="this.style.color='#00FF00'"><input type="radio" name="pregunta2" id="p22"> Blanco.</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta2" id="p23"> Rosa.</p>
+ 
+			<p>Si 10 hombres tardan 10 horas en hacer 10 agujeros, ¿cuánto tarda un hombre en hacer medio agujero?</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta3" id="p31"> 1 hora</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta3" id="p32"> Media hora</p>
+			<p onclick="this.style.color='#00FF00'"><input type="radio" name="pregunta3" id="p33"> No existe medio agujero, un agujero es un agujero</p>
+ 
+			<p>¿Cómo se pronuncia el nombre de la capital de Estados Unidos?</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta4" id="p41"> Nueva York</p>
+			<p onclick="this.style.color='#FF0000'"><input type="radio" name="pregunta4" id="p42"> New York</p>
+			<p onclick="this.style.color='#00FF00'"><input type="radio" name="pregunta4" id="p43"> Washington</p>
+		<hr>
+		<p><input type="button" value="VER RESULTADO" onclick="resultado()"/></p>
+		</form>
+	</body>
+</html>

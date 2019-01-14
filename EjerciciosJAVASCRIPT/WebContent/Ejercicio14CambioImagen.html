@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cambio Imagen</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+                function cambio(){
+                    document.getElementById('imagen').src = "http://los40cl00.epimg.net/los40/imagenes/2018/10/04/actualidad/1538683588_075317_1538683738_noticia_normal.jpg";
+                }
+                
+                function volver(){
+                    document.getElementById('imagen').src = "https://www.dzoom.org.es/wp-content/uploads/2018/05/paisaje-errores10-810x540.jpg";
+                }
+        </script>
+    </head>
+    <body>
+        <div align="center"><h2>Pasa el ratón sobre la imagen</h2></div>
+        <div align="center"><img src="https://www.dzoom.org.es/wp-content/uploads/2018/05/paisaje-errores10-810x540.jpg" id="imagen" onmouseover="cambio()" onMouseout="volver()"></div>
+    </body>
+</html>

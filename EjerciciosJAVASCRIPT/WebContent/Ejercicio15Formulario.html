@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Formulario</title>
+		<script>
+		
+		
+		function valida(f) {
+			  var ok = true;
+			  var msg = "Debes escribir algo en los campos:\n";
+			  if(f.elements[0].value == "")
+			  {
+			    msg += "- Nombre\n";
+			    ok = false;
+			  }
+
+			  if(f.elements["email"].value == "")
+			  {
+			    msg += "- Email\n";
+			    ok = false;
+			  }
+
+			  if(f.elements["comen"].value == "")
+			  {
+			    msg += "- Comentario\n";
+			    ok = false;
+			  }
+
+			  if(ok == false)
+			    alert(msg);
+			  return ok;
+			}
+			</script>
+			</head>
+			<body>
+			<form id="miForm" action="" method="get" onsubmit="return valida(this)">
+			<p>
+			Nombre: <input type="text" id="nombre" onblur="aviso()"/>
+			<br/>
+			<br/>
+			Email: <input type="text" id="email" onblur="aviso()"/>
+			<br/>
+			<br/>
+			Comentarios: <textarea id="comen"></textarea>
+			<br/>
+			<br/>
+			</p>
+			<input type="submit" value="Enviar" />
+			<input type="reset" value="Borrar" />
+			</form>
+	</body>
+</html>
