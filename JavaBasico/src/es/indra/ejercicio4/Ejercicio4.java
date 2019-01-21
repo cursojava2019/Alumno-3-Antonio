@@ -15,17 +15,17 @@ public class Ejercicio4 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		int numero = 0;
+		String numero;
 		do {
 
 			Scanner entrada = new Scanner(System.in);
 			System.out.println("Introduce un número: ");
-			numero = entrada.nextInt();
+			numero = entrada.next();
 
-		} while (numero <= 0);
+		} while (Integer.valueOf(numero) < 0);
 
+		System.out.println("El número introducido tiene " + numero.length() + " cifras");
 	}
 
 }

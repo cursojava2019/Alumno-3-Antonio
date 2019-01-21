@@ -15,7 +15,7 @@ public class Ejercicio3 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		int i = 0;
 		Scanner dia = new Scanner(System.in);
 		System.out.println("Introduce un día de la semana: ");
