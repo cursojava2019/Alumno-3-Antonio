@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 public class Cuentas implements Serializable {
 
+	private String codigo;
 	private Double dinero;
 	private String tipo;
 
 	// Constructor 1
-	public Cuentas(Double dinero, String tipo) {
+	public Cuentas(String codigo, Double dinero, String tipo) {
 		super();
+		this.codigo = codigo;
 		this.dinero = dinero;
 		this.tipo = tipo;
 	}
@@ -17,6 +19,14 @@ public class Cuentas implements Serializable {
 	// Constructor 2
 	public Cuentas() {
 		super();
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public Double getDinero() {

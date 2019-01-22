@@ -142,12 +142,14 @@ public class ProgramaBanco implements Serializable {
 		String x = ENTRADA.next();
 		Clientes cli = banco.obtenerCliente(x);
 		if (cli != null) {
+			System.out.println("Escriba un codigo identificativo unico para su cuenta");
+			String c = ENTRADA.next();
 			System.out.println("Escriba la cantidad de dinero que quiere ingresar al crear la cuenta");
 			Double n = ENTRADA.nextDouble();
 			System.out.println(
 					"El tipo de cuenta que desea, Cuenta Corriente (CC), Cuenta Vivienda(CV) y Fondo de Inversion (FI)");
 			String m = ENTRADA.next();
-			Cuentas cuenta = new Cuentas(n, m);
+			Cuentas cuenta = new Cuentas(c, n, m);
 			banco.aniadirCuenta(cuenta);
 			System.out.println("Ahora ya dispone usted de cuenta en nuestro banco");
 		} else {
