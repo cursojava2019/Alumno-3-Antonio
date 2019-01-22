@@ -23,6 +23,8 @@ public class Banco implements Serializable {
 
 	public Banco() {
 		super();
+		clientes = new TreeMap<String, Clientes>();
+		this.cuentas = new TreeMap<Double, Cuentas>();
 	}
 
 	public Clientes getCliente() {
@@ -65,6 +67,11 @@ public class Banco implements Serializable {
 	public Boolean aniadirCuenta(Cuentas c) {
 		this.cuentas.put(c.getDinero(), c);
 		return true;
+	}
+
+	public Clientes obtenerCliente(String b) {
+		return this.clientes.get(b);
+
 	}
 
 }

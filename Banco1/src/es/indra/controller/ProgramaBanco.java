@@ -32,7 +32,7 @@ public class ProgramaBanco implements Serializable {
 			objecInput.close();
 		} catch (FileNotFoundException e) {
 			banco = new Banco();
-			System.out.println("El Concesionario se inicializa desde cero al no encontrar fichero");
+			System.out.println("El Banco se inicializa desde cero al no encontrar fichero");
 		}
 	}
 
@@ -73,30 +73,40 @@ public class ProgramaBanco implements Serializable {
 		System.out.println("0.- Salir");
 		z = ENTRADA.nextInt();
 		ENTRADA.nextLine();
-		switch (z) {
-		case 1:
-			crearCliente();
-			break;
-		case 2:
-			crearCuenta();
-			break;
-		case 3:
-			ingreso();
-			break;
-		case 4:
-			retirada();
-			break;
-		case 5:
-			revision();
-			break;
-		case 6:
-			estadoCuenta();
-			break;
-		case 0:
-			salir();
-			break;
-		default:
-			System.out.println("Parece que hemos tenido un error");
+		try {
+			switch (z) {
+
+			case 1:
+				crearCliente();
+				fin();
+				break;
+			case 2:
+				crearCuenta();
+				fin();
+				break;
+			case 3:
+				ingreso();
+				fin();
+				break;
+			case 4:
+				retirada();
+				fin();
+				break;
+			case 5:
+				revision();
+				fin();
+				break;
+			case 6:
+				estadoCuenta();
+				break;
+			case 0:
+				salir();
+				break;
+			default:
+				System.out.println("Parece que hemos tenido un error");
+			}
+		} catch (Exception e) {
+			System.out.println("Se ha producido una excepcion");
 		}
 
 	}
@@ -162,7 +172,8 @@ public class ProgramaBanco implements Serializable {
 		System.out.println("VAMOS A REALIZAR UN INGRESO");
 		System.out.println("Introduzca su DNI");
 		String b = ENTRADA.next();
-		if (b.contentEquals(cliente.getDni())) {
+		Clientes cli = banco.obtenerCliente(b);
+		if (cli != null) {
 			Double x;
 			System.out.println("¿Cuánto desea ingresar?");
 			Double i = ENTRADA.nextDouble();
