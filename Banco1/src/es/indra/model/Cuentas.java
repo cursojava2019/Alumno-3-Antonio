@@ -35,25 +35,8 @@ public class Cuentas implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Double retirada(Double r) {
-		if (r > this.dinero) {
-			System.out.println("La operación no se puede realizar ya que no dispone de tanto saldo");
-		} else {
-			this.dinero = dinero - r;
-			System.out.println("Aquí tiene su dinero");
-		}
-		return r;
-	}
-
-	public void consulta() {
-
-	}
-
 	public void cambioCliente() {
 
 	}
 
-	public void revisionMensual() {
-
-	}
 }

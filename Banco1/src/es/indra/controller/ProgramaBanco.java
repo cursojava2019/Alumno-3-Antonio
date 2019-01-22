@@ -19,6 +19,8 @@ public class ProgramaBanco implements Serializable {
 	public static final String NOMBRE_FICHERO_BANCO = "banco.txt";
 	private static Scanner ENTRADA;
 	private static Banco banco = null;
+	private static Cuentas cuenta = null;
+	private static Clientes cliente = null;
 
 	public static void init() throws ClassNotFoundException, IOException {
 		ENTRADA = new Scanner(System.in);
@@ -61,7 +63,14 @@ public class ProgramaBanco implements Serializable {
 		}
 		int z = 0;
 		System.out.println("BIENVENIDO AL BANCO JAÉN");
-		System.out.println("Si es cliente nuevo pulse 1, si ya tiene cuenta en este banco pulse 2");
+		System.out.println("Pulse una de estas opciones: ");
+		System.out.println("1.- Crear nuevo cliente");
+		System.out.println("2.- Crear nueva cuenta");
+		System.out.println("3.- Realizar ingreso");
+		System.out.println("4.- Sacar dinero");
+		System.out.println("5.- Forzar revisión mensual");
+		System.out.println("6.- Ver estado de la cuenta");
+		System.out.println("0.- Salir");
 		z = ENTRADA.nextInt();
 		ENTRADA.nextLine();
 		switch (z) {
@@ -69,7 +78,22 @@ public class ProgramaBanco implements Serializable {
 			crearCliente();
 			break;
 		case 2:
-			comprobarDni();
+			crearCuenta();
+			break;
+		case 3:
+			ingreso();
+			break;
+		case 4:
+			retirada();
+			break;
+		case 5:
+			revision();
+			break;
+		case 6:
+			estadoCuenta();
+			break;
+		case 0:
+			salir();
 			break;
 		default:
 			System.out.println("Parece que hemos tenido un error");
@@ -98,7 +122,7 @@ public class ProgramaBanco implements Serializable {
 		if (m.equals("1")) {
 			crearCuenta();
 		} else {
-			System.out.println("De acuerdo, hasta luego");
+			salir();
 		}
 
 	}
@@ -117,14 +141,116 @@ public class ProgramaBanco implements Serializable {
 
 	public static void crearCuenta() {
 		System.out.println("VAMOS A PROCEDER A CREAR UNA CUENTA");
-		System.out.println("Escriba la cantidad de dinero que quiere ingresar al crear la cuenta");
-		Double n = ENTRADA.nextDouble();
-		System.out.println(
-				"El tipo de cuenta que desea, Cuenta Corriente (CC), Cuenta Vivienda(CV) y Fondo de Inversion (FI)");
-		String m = ENTRADA.next();
-		Cuentas cuenta = new Cuentas(n, m);
-		banco.aniadirCuenta(cuenta);
-		System.out.println("Ahora ya dispone usted de cuenta en nuestro banco");
+		System.out.println("Introduzca su DNI");
+		String x = ENTRADA.next();
+		if (x.contentEquals(cliente.getDni())) {
+			System.out.println("Escriba la cantidad de dinero que quiere ingresar al crear la cuenta");
+			Double n = ENTRADA.nextDouble();
+			System.out.println(
+					"El tipo de cuenta que desea, Cuenta Corriente (CC), Cuenta Vivienda(CV) y Fondo de Inversion (FI)");
+			String m = ENTRADA.next();
+			Cuentas cuenta = new Cuentas(n, m);
+			banco.aniadirCuenta(cuenta);
+			System.out.println("Ahora ya dispone usted de cuenta en nuestro banco");
+		} else {
+			System.out.println("Usted no es cliente de este banco, regístrese para poder crear una cuenta");
+		}
 
+	}
+
+	public static void ingreso() {
+		System.out.println("VAMOS A REALIZAR UN INGRESO");
+		System.out.println("Introduzca su DNI");
+		String b = ENTRADA.next();
+		if (b.contentEquals(cliente.getDni())) {
+			Double x;
+			System.out.println("¿Cuánto desea ingresar?");
+			Double i = ENTRADA.nextDouble();
+			x = cuenta.getDinero();
+			x = x + i;
+			System.out.println("El de ingreso de " + i + " se ha realizado correctamente, ahora tiene en su cuenta " + x
+					+ " euros");
+		} else {
+			System.out.println("Usted no es cliente de este banco, regístrese para poder hacer un ingreso");
+		}
+
+	}
+
+	public static void retirada() {
+		System.out.println("VAMOS A REALIZAR UN INGRESO");
+		System.out.println("Introduzca su DNI");
+		String b = ENTRADA.next();
+		if (b.contentEquals(cliente.getDni())) {
+			System.out.println("¿Cuánto desea retirar?");
+			double r = ENTRADA.nextDouble();
+			double v = cuenta.getDinero();
+			String z = cuenta.getTipo();
+			if (z == "CC") {
+				if (r > v) {
+					System.out.println("La operación no se puede realizar ya que no dispone de tanto saldo");
+				} else {
+					v = v - r;
+					System.out.println("Aquí tiene su dinero");
+				}
+			} else if (z == "FI") {
+				if ((v - r) < -500) {
+					System.out.println(
+							"La operación no se puede realizar ya que no puede tener una deuda de más de 500€");
+				} else {
+					v = v - r;
+					System.out.println("Aquí tiene su dinero");
+				}
+			} else if (z == "CV") {
+				System.out.println("Con ese tipo de cuenta no se puede sacar dinero");
+			} else {
+				System.out.println("Debe haber un error en su tipo de cuenta");
+			}
+		} else {
+			System.out.println("Usted no es cliente de este banco, regístrese para poder hacer un ingreso");
+		}
+	}
+
+	public static void revision() {
+		System.out.println("VAMOS A HACER LA REVISIÓN MENSUAL DE LA CUENTA");
+		System.out.println("Introduzca su DNI");
+		String b = ENTRADA.next();
+		if (b.contentEquals(cliente.getDni())) {
+			System.out.println("Procedemos a la revisión");
+			double r = ENTRADA.nextDouble();
+			double v = cuenta.getDinero();
+			String z = cuenta.getTipo();
+			if (z == "CC") {
+				v = (v * 0.1) - 0.6;
+				System.out.println("Se ha realizado la revisión y ahora dispone de " + v + " €");
+			} else if (z == "FI") {
+				v = (v * 0.2) - 0.6;
+				System.out.println("Se ha realizado la revisión y ahora dispone de " + v + " €");
+			} else if (z == "CV") {
+				v = (v * 0.2);
+				System.out.println("Se ha realizado la revisión y ahora dispone de " + v + " €");
+			} else {
+				System.out.println("Debe haber un error en su tipo de cuenta");
+			}
+		} else {
+			System.out.println("Usted no es cliente de este banco, regístrese para poder hacer un ingreso");
+		}
+	}
+
+	public static void estadoCuenta() {
+		System.out.println("VAMOS A VER EL ESTADO DE SU CUENTA");
+		System.out.println("Introduzca su DNI");
+		String b = ENTRADA.next();
+		if (b.contentEquals(cliente.getDni())) {
+			System.out.println("Usted es " + cliente.getNombre() + " " + cliente.getApellidos());
+			System.out.println(
+					"Su cuenta tiene un saldo de " + cuenta.getDinero() + " €, y es de tipo " + cuenta.getTipo());
+		} else {
+			System.out.println("Usted no es cliente de este banco, regístrese para poder hacer un ingreso");
+		}
+
+	}
+
+	public static void salir() {
+		System.out.println("De acuerdo, hasta luego");
 	}
 }

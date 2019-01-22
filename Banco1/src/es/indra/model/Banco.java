@@ -67,13 +67,4 @@ public class Banco implements Serializable {
 		return true;
 	}
 
-	public Double ingreso(Double i) {
-		Double x;
-		x = cuenta.getDinero();
-		x = x + i;
-		System.out.println(
-				"El de ingreso de " + i + " se ha realizado correctamente, ahora tiene en su cuenta " + x + " euros");
-		return i;
-	}
-
 }
