@@ -75,7 +75,6 @@ public class ProgramaBanco implements Serializable {
 		ENTRADA.nextLine();
 		try {
 			switch (z) {
-
 			case 1:
 				crearCliente();
 				fin();
@@ -137,23 +136,12 @@ public class ProgramaBanco implements Serializable {
 
 	}
 
-	public static void comprobarDni() {
-		String x = null;
-		System.out.println("Introduzca su dni");
-		x = ENTRADA.next();
-		if (x.equals("123456789S")) {
-			System.out.println("Bienvenido");
-		} else {
-			System.out.println("DNI incorrecto");
-		}
-
-	}
-
 	public static void crearCuenta() {
 		System.out.println("VAMOS A PROCEDER A CREAR UNA CUENTA");
 		System.out.println("Introduzca su DNI");
 		String x = ENTRADA.next();
-		if (x.contentEquals(cliente.getDni())) {
+		Clientes cli = banco.obtenerCliente(x);
+		if (cli != null) {
 			System.out.println("Escriba la cantidad de dinero que quiere ingresar al crear la cuenta");
 			Double n = ENTRADA.nextDouble();
 			System.out.println(
@@ -191,7 +179,8 @@ public class ProgramaBanco implements Serializable {
 		System.out.println("VAMOS A REALIZAR UN INGRESO");
 		System.out.println("Introduzca su DNI");
 		String b = ENTRADA.next();
-		if (b.contentEquals(cliente.getDni())) {
+		Clientes cli = banco.obtenerCliente(b);
+		if (cli != null) {
 			System.out.println("¿Cuánto desea retirar?");
 			double r = ENTRADA.nextDouble();
 			double v = cuenta.getDinero();
@@ -225,7 +214,8 @@ public class ProgramaBanco implements Serializable {
 		System.out.println("VAMOS A HACER LA REVISIÓN MENSUAL DE LA CUENTA");
 		System.out.println("Introduzca su DNI");
 		String b = ENTRADA.next();
-		if (b.contentEquals(cliente.getDni())) {
+		Clientes cli = banco.obtenerCliente(b);
+		if (cli != null) {
 			System.out.println("Procedemos a la revisión");
 			double r = ENTRADA.nextDouble();
 			double v = cuenta.getDinero();
@@ -251,7 +241,8 @@ public class ProgramaBanco implements Serializable {
 		System.out.println("VAMOS A VER EL ESTADO DE SU CUENTA");
 		System.out.println("Introduzca su DNI");
 		String b = ENTRADA.next();
-		if (b.contentEquals(cliente.getDni())) {
+		Clientes cli = banco.obtenerCliente(b);
+		if (cli != null) {
 			System.out.println("Usted es " + cliente.getNombre() + " " + cliente.getApellidos());
 			System.out.println(
 					"Su cuenta tiene un saldo de " + cuenta.getDinero() + " €, y es de tipo " + cuenta.getTipo());

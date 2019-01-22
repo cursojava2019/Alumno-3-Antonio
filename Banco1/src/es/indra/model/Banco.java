@@ -74,4 +74,9 @@ public class Banco implements Serializable {
 
 	}
 
+	public Cuentas obtenerCuenta(String b) {
+		return this.cuentas.get(b);
+
+	}
+
 }
