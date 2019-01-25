@@ -1,4 +1,4 @@
-package es.indra.academia.controller.alumno;
+package es.indra.academia.controller.alumnos;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,7 +53,20 @@ public class ListadoAlumnosServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		AlumnoService alumnoService = AlumnoService.getInstance();
+		String patron = request.getParameter("patron");
+		List<Alumno> alumnos = null;
+		if (patron != null && !patron.equals("")) {
+			alumnos = alumnoService.findAlumnosPatron(patron);
+		} else {
+			alumnos = alumnoService.findAll();
+		}
+
+		request.setAttribute("listado", alumnos);
+
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/alumnos/listado.jsp");
+		dispacher.forward(request, response);
 	}
 
 }
