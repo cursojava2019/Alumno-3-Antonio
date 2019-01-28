@@ -1,12 +1,17 @@
 package es.indra.academia.controller.profesor;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import es.indra.academia.model.entities.Profesor;
+import es.indra.academia.model.service.ProfesorService;
 
 /**
  * Servlet implementation class ListadoProfesorServlet
@@ -29,8 +34,14 @@ public class ListadoProfesorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		ProfesorService profesorService = ProfesorService.getInstance();
+
+		List<Profesor> profesor = profesorService.findAll();
+		request.setAttribute("listado", profesor);
+
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/profesor/listado.jsp");
+		dispacher.forward(request, response);
 	}
 
 	/**
@@ -39,8 +50,20 @@ public class ListadoProfesorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		ProfesorService profesorService = ProfesorService.getInstance();
+		String patron = request.getParameter("patron");
+		List<Profesor> profesor = null;
+		if (patron != null && !patron.equals("")) {
+			profesor = profesorService.findProfesorPatron(patron);
+		} else {
+			profesor = profesorService.findAll();
+		}
+
+		request.setAttribute("listado", profesor);
+
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/profesor/listado.jsp");
+		dispacher.forward(request, response);
 	}
 
 }

@@ -1,12 +1,16 @@
 package es.indra.academia.controller.profesor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import es.indra.academia.model.service.ProfesorService;
 
 /**
  * Servlet implementation class CrearProfesorServlet
@@ -29,8 +33,9 @@ public class CrearProfesorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/profesor/nuevo.jsp");
+		dispacher.forward(request, response);
 	}
 
 	/**
@@ -39,8 +44,39 @@ public class CrearProfesorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		ArrayList<String> errores = new ArrayList<String>();
+
+		String nif = request.getParameter("nif");
+		String nombre = request.getParameter("nombre");
+		String apellido1 = request.getParameter("apellido1");
+		String apellido2 = request.getParameter("apellido2");
+		String telefono = request.getParameter("telefono");
+		String correo = request.getParameter("email");
+		String titulacion = request.getParameter("titulacion");
+
+		ProfesorForm profesor = new ProfesorForm();
+		profesor.setCorreo(correo);
+		profesor.setApellido2(apellido2);
+		profesor.setApellido1(apellido1);
+		profesor.setNif(nif);
+		profesor.setNombre(nombre);
+		profesor.setTelefono(telefono);
+		profesor.setTitulacion(titulacion);
+
+		if (errores.size() > 0) {
+			request.setAttribute("formulario", profesor);
+			request.setAttribute("errores", errores);
+
+			RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/profesor/nuevo.jsp");
+			dispacher.forward(request, response);
+		} else {
+			ProfesorService profesorService = ProfesorService.getInstance();
+			profesorService.create(profesor);
+
+			response.sendRedirect("./listado.html?mensaje=correcto");
+		}
+
 	}
 
 }

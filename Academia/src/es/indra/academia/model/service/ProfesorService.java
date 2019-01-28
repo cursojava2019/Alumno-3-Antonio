@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.indra.academia.model.dao.ProfesorDao;
-import es.indra.academia.model.entities.Alumno;
 import es.indra.academia.model.entities.Profesor;
 import es.indra.academia.model.support.Dao;
 import es.indra.academia.model.support.DaoException;
@@ -33,12 +32,12 @@ public class ProfesorService extends Service<Long, Profesor> {
 		return this.dao;
 	}
 
-	public List<Alumno> findAlumnosPatron(String patron) {
+	public List<Profesor> findProfesorPatron(String patron) {
 		try {
-			return this.dao.findAlumnos(patron);
+			return this.dao.findProfesor(patron);
 		} catch (DaoException e) {
 			e.printStackTrace();
-			return new ArrayList<Alumno>();
+			return new ArrayList<Profesor>();
 		}
 
 	}

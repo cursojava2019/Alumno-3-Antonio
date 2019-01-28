@@ -10,6 +10,15 @@ public class Profesor {
 	private String apellido2;
 	private String telefono;
 	private String correo;
+	private String titulacion;
+
+	public String getTitulacion() {
+		return titulacion;
+	}
+
+	public void setTitulacion(String titulacion) {
+		this.titulacion = titulacion;
+	}
 
 	public Long getId() {
 		return id;
@@ -70,7 +79,8 @@ public class Profesor {
 	@Override
 	public String toString() {
 		return "Profesor [id=" + id + ", nif=" + nif + ", nombre=" + nombre + ", apellido1=" + apellido1
-				+ ", apellido2=" + apellido2 + ", telefono=" + telefono + ", correo=" + correo + "]";
+				+ ", apellido2=" + apellido2 + ", telefono=" + telefono + ", correo=" + correo + ", titulacion="
+				+ titulacion + "]";
 	}
 
 }
