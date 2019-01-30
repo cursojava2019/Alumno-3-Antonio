@@ -9,14 +9,34 @@
 		listado=new ArrayList<Profesor>();
 	}
 	String patronBusqueda= request.getParameter("patron");
-  if (patronBusqueda==null) patronBusqueda="";  
+  if (patronBusqueda==null) patronBusqueda=""; 
+  
+ String mensaje= request.getParameter("mensaje");
+ Boolean mensajeOK=false;
+ Boolean mensajeError=false;
+ if (mensaje!=null) {
+ 		if (mensaje.equalsIgnoreCase("correcto")) {
+ 			mensajeOK=true;
+ 		}
+ 		if (mensaje.equalsIgnoreCase("errorId")) {
+ 			mensajeError=true;
+ 		}
+ }
 %>    
     
 <!DOCTYPE html>
 <html>
 <%@include file="../plantilla/head.jsp" %>
 <body>
-
+	<script>
+	function confirmarEliminacion(id){
+		if (confirm("¿Está seguro que desea eliminar este profesor?")){
+			location.href='<%=request.getContextPath()%>/admin/profesor/eliminar.html?id='+id;
+		}
+		
+		
+	}
+	</script>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -24,7 +44,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Profesores</h1>
+                    <h1 class="page-header">Profesor</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -32,11 +52,18 @@
             <div class="row">
             <div class="col-lg-12">
             	<div class="panel panel-default">
-                        <%if (request.getParameter("mensaje")!=null){ %>
+                        <%if (mensajeOK){ %>
                         <div class="alert alert-success" id="mensaje">
                                Operación realizada correctamente
                             </div>
                             <%} %>
+                             <%if (mensajeError){ %>
+                        <div class="alert alert-danger" id="mensaje">
+                               Id no encontrado. No es posible realizar la operación.
+                            </div>
+                            <%} %>
+                            
+                            
                         <div class="panel-heading">
                             Listado de Profesores
                         </div>
@@ -85,7 +112,7 @@
                                         <td><%=profesor.getApellido1()%> <%=profesor.getApellido2()%></td>
                                         <td><%=profesor.getNif()%></td>
                                         <td ><%=profesor.getTelefono()%></td>
-                                        <td ><a href="<%=profesor.getId()%>">Modificar</a> <a href="<%=profesor.getId()%>">Eliminar</a></td>
+                                        <td ><a href="<%=request.getContextPath()%>/admin/profesor/modificar.html?id=<%=profesor.getId()%>">Modificar</a> <a href="#" onclick="confirmarEliminacion(<%=profesor.getId()%>)">Eliminar</a></td>
                                     </tr>
                                 <% } %>   
                                 </tbody>
