@@ -3,6 +3,7 @@ package model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import model.dao.ProfesorDao;
@@ -15,6 +16,7 @@ public class ProfesorService extends Service<Long, Profesor> {
 
 	private static ProfesorService singleton = null;
 	private ProfesorDao dao;
+	private Logger log = LogManager.getLogger(AlumnoService.class);
 
 	public static ProfesorService getInstance() {
 		if (singleton == null) {
@@ -46,8 +48,8 @@ public class ProfesorService extends Service<Long, Profesor> {
 
 	@Override
 	protected Logger getLog() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return this.log;
 	}
 
 }
