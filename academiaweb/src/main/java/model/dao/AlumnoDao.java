@@ -9,15 +9,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import configuration.Configuracion;
 import model.entities.Alumno;
 import model.support.Dao;
 import model.support.DaoException;
 
+@Repository
 public class AlumnoDao implements Dao<Long, Alumno> {
 
 	private static final String CAMPOS = "nif,nombre,apellido1,apellido2,telefono,correo,repetidor,fechaalta,fechabaja,observaciones";
 
+	@Override
 	public void create(Alumno entity) throws DaoException {
 		try {
 			Connection co = Configuracion.getInstance().obtenerConexionBD();
@@ -52,6 +56,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	}
 
+	@Override
 	public void update(Alumno entity) throws DaoException {
 
 		try {
@@ -89,6 +94,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	}
 
+	@Override
 	public void delete(Long key) throws DaoException {
 		try {
 			Connection co = Configuracion.getInstance().obtenerConexionBD();
@@ -105,6 +111,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	}
 
+	@Override
 	public Alumno find(Long key) throws DaoException {
 		Alumno alumno = null;
 		try {
@@ -127,6 +134,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 		}
 	}
 
+	@Override
 	public List<Alumno> findAll() throws DaoException {
 		try {
 			Connection co = Configuracion.getInstance().obtenerConexionBD();
@@ -206,6 +214,30 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 			co.close();
 			return listado;
 		} catch (Exception e) {
+			System.out.println("Error creando objeto en BBDD");
+			e.printStackTrace();
+			throw new DaoException();
+		}
+	}
+
+	public List<Alumno> buscarNif(String nif) throws DaoException {
+
+		Alumno alumno = null;
+		try {
+			Connection co = Configuracion.getInstance().obtenerConexionBD();
+			String query = "SELECT id," + CAMPOS + " FROM ALUMNO WHERE nif=?";
+			PreparedStatement instruccion = co.prepareStatement(query);
+
+			instruccion.setString(1, nif);
+			ResultSet resultados = instruccion.executeQuery();
+			ArrayList<Alumno> listado = new ArrayList<Alumno>();
+			if (resultados.next()) {
+				alumno = obtenerAlumno(resultados);
+				listado.add(alumno);
+			}
+			co.close();
+			return listado;
+		} catch (SQLException e) {
 			System.out.println("Error creando objeto en BBDD");
 			e.printStackTrace();
 			throw new DaoException();

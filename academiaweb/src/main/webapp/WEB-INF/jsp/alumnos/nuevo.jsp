@@ -3,18 +3,11 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 
-<%
-List<String> errores= (List<String>)request.getAttribute("errores");
-AlumnoForm formulario= (AlumnoForm)request.getAttribute("formulario");
-if (errores==null){
-	errores=new ArrayList<String>();
-}
-if (formulario==null){
-	formulario=new AlumnoForm();
-}
-%>
 <html>
 <%@include file="../plantilla/head.jsp" %>
 <body>
@@ -41,61 +34,69 @@ if (formulario==null){
                         
                             <div class="row">
                                 <div class="col-lg-6">
-                                <%if (errores.size()>0) {%>
-                                <div class="alert alert-danger">
-                               		<%for(int i=0;i<errores.size();i++){ %>
-                               			<p><%=errores.get(i)%></p>
-                               		<%} %>
-                           			 </div>
-                           			 
-                           			 <%} %>
-                                    <form role="form" action="./nuevo.html" method="post">
+                                
+                                    	<form:form action="./nuevo.html" method="post" modelAttribute="alumno" >
+                                    	<form:hidden path="id" />
+                                       	<spring:hasBindErrors name="*"> HAY ERRORRES QUE RESOLVER</spring:hasBindErrors>
                                         <div class="form-group">
                                             <label>NIF</label>
-                                            <input name="nif" class="form-control" value="<%=formulario.getNif()%>">
+                                           <form:input path="nif" class="form-control"/>
+                                           <form:errors path="nif" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nombre</label>
-                                            <input name="nombre" class="form-control" value="<%=formulario.getNombre()%>">
+                                            <label><spring:message code="alumno.nombre"/></label>
+                                             <form:input path="nombre" class="form-control"/>
+                                             <form:errors path="nombre" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Primer Apellido </label>
-                                            <input name="apellido1" class="form-control" value="<%=formulario.getApellido1()%>">
+                                            <label><spring:message code="alumno.apellido1"/> </label>
+                                            <form:input path="apellido1" class="form-control"/>
+                                            <form:errors path="apellido1" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Segundo Apellido</label>
-                                            <input name="apellido2" class="form-control" value="<%=formulario.getApellido2()%>">
+                                            <label><spring:message code="alumno.apellido2"/></label>
+                                             <form:input path="apellido2" class="form-control"/>
+                                            <form:errors path="apellido2" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Telefono</label>
-                                            <input name="telefono" class="form-control" type="text" value="<%=formulario.getTelefono()%>">
+                                             <form:input path="telefono" class="form-control"/>
+                                            <form:errors path="telefono" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Correo</label>
-                                            <input name="email" class="form-control" type="email" value="<%=formulario.getCorreo()%>">
+                                             <form:input path="correo" class="form-control"/>
+                                             <form:errors path="correo" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
                                         </div>
+                                        <c:if test="${formulario.repetidor==true}">
+                                        <c:set var="chequeado" value="checked">
+                                        </c:set> </c:if>
                                         <div class="form-group">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input name="repetidor" type="checkbox" value="" checked="<%=formulario.getRepetidor()%>"/>Repetidor
+                                                    <form:checkbox path="repetidor"/>
+                                                    <form:errors path="repetidor" element="div" cssClass="alert alert-danger"/>
                                                 </label>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Observaciones</label>
-                                            <textarea class="form-control" name="observaciones" rows="3"><%=formulario.getObservaciones()%></textarea>
+                                            <form:textarea path="observaciones" rows="3"/>
+                                            <form:errors path="observaciones" element="div" cssClass="alert alert-danger"/>
+                                            
                                         </div>
-                                      
+                                      		
                                         <button type="submit" class="btn btn-default">Enviar</button>
                                         <button type="reset" class="btn btn-default">Limpiar</button>
-                                    </form>
+                                   
+                                    </form:form>
                                 </div>
                                
                             </div>

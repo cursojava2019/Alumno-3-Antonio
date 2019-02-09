@@ -1,44 +1,45 @@
 package es.indra.ejercicio4;
 
 public class Electrodomestico {
-
 	static final Color COLOR_BASE = Color.BLANCO;
-	static final float PRECIO_DEFECTO = Float.valueOf(100);
-	static final float PESO_DEFECTO = Float.valueOf(5);
+	static final Float PRECIO_DEFECTO = Float.valueOf(100);
+	static final Float PESO_DEFECTO = Float.valueOf(5);
 	static final Character CLASIFICACION_DEFECTO = 'F';
 
-	protected float precioBase;
-	protected String color;
+	protected Float precioBase;
+	protected Color color;
 	protected Character clasificacion;
-	protected float peso;
+	protected Float peso;
 
 	public Electrodomestico() {
 		super();
 
 		this.precioBase = PRECIO_DEFECTO;
 		this.color = COLOR_BASE;
-
+		this.peso = PESO_DEFECTO;
+		this.clasificacion = CLASIFICACION_DEFECTO;
 	}
 
-	public Electrodomestico(float precioBase, float peso) {
+	public Electrodomestico(Float precioBase, Float peso) {
 		this();
 		this.precioBase = precioBase;
 		this.peso = peso;
+
 	}
 
-	public Electrodomestico(float precioBase, String color, Character clasificacion, float peso) {
+	public Electrodomestico(Float precioBase, String color, Character clasificacion, Float peso) {
 		super();
 		this.precioBase = precioBase;
-		this.color = color;
+		comprobarColor(color);
 		comprobarConsumoEnergetico(clasificacion);
 		this.peso = peso;
 	}
 
-	public float getPrecioBase() {
-		return precioBase;
+	public Float getPrecioBase() {
+		return this.precioBase;
 	}
 
-	public void setPrecioBase(float precioBase) {
+	public void setPrecioBase(Float precioBase) {
 		this.precioBase = precioBase;
 	}
 
@@ -51,42 +52,43 @@ public class Electrodomestico {
 	}
 
 	public Character getClasificacion() {
-		return clasificacion;
+		return this.clasificacion;
 	}
 
 	public void setClasificacion(Character clasificacion) {
-		this.clasificacion = clasificacion;
+		comprobarConsumoEnergetico(clasificacion);
 	}
 
-	public float getPeso() {
-		return peso;
+	public Float getPeso() {
+		return this.peso;
 	}
 
-	public void setPeso(float peso) {
+	public void setPeso(Float peso) {
 		this.peso = peso;
 	}
 
 	private void comprobarConsumoEnergetico(char clasi) {
-		if (clasi == 'A' || clasi == 'B' || clasi == 'C' || clasi == 'D') {
+		if (clasi == 'A' || clasi == 'B' || clasi == 'C' || clasi == 'D' || clasi == 'E' || clasi == 'F') {
 			this.clasificacion = clasi;
-
 		} else {
 			this.clasificacion = CLASIFICACION_DEFECTO;
 		}
+
 	}
 
 	private void comprobarColor(String color) {
-		if (color.equals(Color.ROJO.toString()) || color.equals(Color.AZUL.toString())
-				|| color.equals(Color.BLANCO.toString()) || color.equals(Color.GRIS.toString())
-				|| color.equals(Color.NEGRO.toString())) {
+		if (color.equalsIgnoreCase(Color.ROJO.toString()) || color.equalsIgnoreCase(Color.AZUL.toString())
+				|| color.equalsIgnoreCase(Color.BLANCO.toString()) || color.equalsIgnoreCase(Color.NEGRO.toString())
+				|| color.equalsIgnoreCase(Color.GRIS.toString())) {
 			this.color = Color.valueOf(color);
 		} else {
 			this.color = COLOR_BASE;
 		}
+
 	}
 
 	public Float precioFinal() {
-		float precioFinal = Float.valueOf(0);
+		Float precioFinal = Float.valueOf(0);
 		switch (this.clasificacion) {
 		case 'A':
 			precioFinal += 100;
@@ -109,18 +111,21 @@ public class Electrodomestico {
 
 		default:
 			precioFinal += 20;
+			break;
 		}
 
-		if (peso <= 19) {
+		if (this.peso <= 19) {
 			precioFinal += 10;
-		} else if (peso > 19 && peso <= 49) {
+		} else if (this.peso > 19 && this.peso <= 49) {
 			precioFinal += 50;
-		} else if (peso > 49 && peso <= 79) {
+		} else if (this.peso > 49 && this.peso <= 79) {
 			precioFinal += 80;
 		} else {
 			precioFinal += 100;
 		}
 
 		return precioFinal;
+
 	}
+
 }

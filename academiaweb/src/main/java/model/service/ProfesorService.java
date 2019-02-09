@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import controller.profesor.ProfesorForm;
 import model.dao.ProfesorDao;
 import model.entities.Profesor;
 import model.support.Dao;
@@ -50,6 +51,25 @@ public class ProfesorService extends Service<Long, Profesor> {
 	protected Logger getLog() {
 
 		return this.log;
+	}
+
+	public void update(ProfesorForm profesor) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public List<Profesor> buscarNif(String nif) {
+		try {
+			return this.dao.buscarNif(nif);
+		} catch (DaoException e) {
+			this.log.error("Error buscando NIF", e);
+			return null;
+		}
+	}
+
+	public void update(Profesor obtenerProfesor) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -2,6 +2,9 @@ package es.indra.academia.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.LogManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import es.indra.academia.model.dao.AlumnoDao;
 import es.indra.academia.model.entities.Alumno;
@@ -9,23 +12,11 @@ import es.indra.academia.model.support.Dao;
 import es.indra.academia.model.support.DaoException;
 import es.indra.academia.model.support.Service;
 
+@org.springframework.stereotype.Service
 public class AlumnoService extends Service<Long, Alumno> {
-
-	private static AlumnoService singleton = null;
+	@Autowired
 	private AlumnoDao dao;
-
-	public static AlumnoService getInstance() {
-		if (singleton == null) {
-			singleton = new AlumnoService();
-		}
-		return singleton;
-
-	}
-
-	private AlumnoService() {
-		super();
-		this.dao = new AlumnoDao();
-	}
+	private Logger log = LogManager.getLogger(AlumnoService.class);
 
 	@Override
 	protected Dao<Long, Alumno> getDao() {
@@ -40,6 +31,21 @@ public class AlumnoService extends Service<Long, Alumno> {
 			return new ArrayList<Alumno>();
 		}
 
+	}
+
+	@Override
+	protected Logger getLog() {
+		return this.log;
+
+	}
+
+	public List<Alumno> buscarNif(String nif) {
+		try {
+			return this.dao.buscarNif(nif);
+		} catch (DaoException e) {
+			this.log.error("Error buscando NIF", e);
+			return null;
+		}
 	}
 
 }

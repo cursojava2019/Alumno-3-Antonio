@@ -44,13 +44,11 @@ public class VehiculoDao implements Dao<Long, Vehiculo> {
 
 	@Override
 	public void update(Vehiculo entity) throws DaoException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void delete(Long key) throws DaoException {
-		// TODO Auto-generated method stub
 
 	}
 

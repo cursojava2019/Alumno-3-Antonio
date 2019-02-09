@@ -80,4 +80,9 @@ public class ProfesorForm extends Profesor {
 		return profesor;
 	}
 
+	public Profesor obtenerProfesor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

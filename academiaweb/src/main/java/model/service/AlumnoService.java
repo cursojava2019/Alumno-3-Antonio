@@ -5,33 +5,21 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import controller.alumnos.AlumnoForm;
 import model.dao.AlumnoDao;
 import model.entities.Alumno;
 import model.support.Dao;
 import model.support.DaoException;
 import model.support.Service;
 
+@org.springframework.stereotype.Service
 public class AlumnoService extends Service<Long, Alumno> {
-
-	private static AlumnoService singleton = null;
+	@Autowired
 	private AlumnoDao dao;
 	private Logger log = LogManager.getLogger(AlumnoService.class);
 
-	public static AlumnoService getInstance() {
-		if (singleton == null) {
-			singleton = new AlumnoService();
-		}
-		return singleton;
-
-	}
-
-	private AlumnoService() {
-		super();
-		this.dao = new AlumnoDao();
-	}
-
-	@Override
 	protected Dao<Long, Alumno> getDao() {
 		return this.dao;
 	}
@@ -46,9 +34,37 @@ public class AlumnoService extends Service<Long, Alumno> {
 
 	}
 
-	@Override
 	protected Logger getLog() {
 		return this.log;
+
+	}
+
+	public List<Alumno> buscarNif(String nif) {
+		try {
+			return this.dao.buscarNif(nif);
+		} catch (DaoException e) {
+			this.log.error("Error buscando NIF", e);
+			return null;
+		}
+	}
+
+	public static AlumnoService getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void update(Alumno obtenerAlumno) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void create(AlumnoForm alumno) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void update(AlumnoForm alumno) {
+		// TODO Auto-generated method stub
 
 	}
 

@@ -44,19 +44,17 @@ public class CompradorDao implements Dao<String, Comprador> {
 
 	@Override
 	public void update(Comprador entity) throws DaoException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void delete(String key) throws DaoException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Comprador find(String key) throws DaoException {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

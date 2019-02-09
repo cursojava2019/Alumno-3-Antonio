@@ -1,113 +1,207 @@
 package controller.alumnos;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import model.entities.Alumno;
 
-public class AlumnoForm extends Alumno {
+public class AlumnoForm {
+	@Positive
+	private Long id;
+	@NotNull
+	@NotEmpty
+	@Size(min = 3, max = 100)
+	private String nombre;
+	@NotNull
+	@NotEmpty
+	@Size(min = 3, max = 100)
+	private String apellido1;
+	private String apellido2;
+	@Size(min = 9, max = 9)
+	private String nif;
+
+	private String telefono;
+	@Email
+	@NotEmpty
+	private String correo;
+	private Boolean repetidor;
+	@PastOrPresent
+	private Date fechaAlta;
+
+	private Date fechaBaja;
+	@Size(min = 0, max = 500)
+	private String observaciones;
 
 	public AlumnoForm() {
 		super();
-		setNif("");
-		setNombre("");
-		setApellido1("");
-		setApellido2("");
-		setTelefono("");
-		setCorreo("");
-		setObservaciones("");
-		setRepetidor(false);
+		this.nif = "";
+		this.nombre = "";
+		this.apellido1 = "";
+		this.apellido2 = "";
+		this.telefono = "";
+		this.correo = "";
+		this.observaciones = "";
+		this.repetidor = false;
 	}
 
 	public AlumnoForm(Alumno a) {
 		super();
-		setId(a.getId());
-		setNif(a.getNif());
-		setNombre(a.getNombre());
-		setApellido1(a.getApellido1());
-		setApellido2(a.getApellido2());
-		setTelefono(a.getTelefono());
-		setCorreo(a.getCorreo());
-		setObservaciones(a.getObservaciones());
-		setRepetidor(a.getRepetidor());
-		setFechaAlta(a.getFechaAlta());
-		setFechaBaja(a.getFechaBaja());
+		this.id = a.getId();
+		this.nif = (a.getNif());
+		this.nombre = (a.getNombre());
+		this.apellido1 = (a.getApellido1());
+		this.apellido2 = (a.getApellido2());
+		this.telefono = (a.getTelefono());
+		this.correo = (a.getCorreo());
+		this.observaciones = (a.getObservaciones());
+		this.repetidor = (a.getRepetidor());
+		this.fechaAlta = (a.getFechaAlta());
+		this.fechaBaja = (a.getFechaBaja());
 	}
 
-	public void validar(List<String> errores) {
-		if (getNif() == null || getNif().equals("")) {
-			errores.add("El nif es obligatorio");
-
-		}
-		if (getNif().length() != 9) {
-			errores.add("El formato de NIF no es correcto");
-
-		}
-		if (getNombre() == null || getNombre().equals("")) {
-			errores.add("El Nombre es obligatorio");
-
-		}
-		if (getApellido1() == null || getApellido1().equals("")) {
-			errores.add("El Primero Apellido es obligatorio");
-
-		}
-
+	public Alumno obtenerAlumno() {
+		Alumno a = new Alumno();
+		a.setId(getId());
+		a.setNif(getNif());
+		a.setNombre(getNombre());
+		a.setApellido1(getApellido1());
+		a.setApellido2(getApellido2());
+		a.setTelefono(getTelefono());
+		a.setCorreo(getCorreo());
+		a.setObservaciones(getObservaciones());
+		a.setRepetidor(getRepetidor());
+		a.setFechaAlta(getFechaAlta());
+		a.setFechaBaja(getFechaBaja());
+		return a;
 	}
 
-	public static AlumnoForm obtenerAlumnoForm(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		String nif = request.getParameter("nif");
-		String nombre = request.getParameter("nombre");
-		String apellido1 = request.getParameter("apellido1");
-		String apellido2 = request.getParameter("apellido2");
-		String telefono = request.getParameter("telefono");
-		String correo = request.getParameter("email");
-		String repetidor = request.getParameter("repetidor");
-		String observaciones = request.getParameter("observaciones");
-		String fechaBaja = request.getParameter("fechaBaja");
-		String fechaAlta = request.getParameter("fechaAlta");
+//	public void validar(List<String> errores) {
+//		if (nif == null || nif.equals("")) {
+//			errores.add("El nif es obligatorio");
+//
+//		}
+//		if (nif.length() != 9) {
+//			errores.add("El formato de NIF no es correcto");
+//
+//		}
+//		if (nombre=() == null || getNombre().equals("")) {
+//			errores.add("El Nombre es obligatorio");
+//
+//		}
+//		if (getApellido1() == null || getApellido1().equals("")) {
+//			errores.add("El Primero Apellido es obligatorio");
+//
+//		}
+//
+//	}
 
-		AlumnoForm alumno = new AlumnoForm();
-		Long idLong = null;
-		try {
-			idLong = Long.parseLong(id);
-		} catch (NumberFormatException e) {
-			idLong = null;
-		}
+	public Long getId() {
+		return this.id;
+	}
 
-		if (fechaBaja != null && !fechaBaja.equals("")) {
-			alumno.setFechaBajaString(fechaBaja);
-		}
-		if (fechaAlta != null && !fechaAlta.equals("")) {
-			alumno.setFechaAltaString(fechaAlta);
-		}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-		Boolean repetiBool = Boolean.parseBoolean(repetidor);
-		alumno.setId(idLong);
-		alumno.setCorreo(correo);
-		alumno.setApellido2(apellido2);
-		alumno.setApellido1(apellido1);
-		alumno.setNif(nif);
-		alumno.setNombre(nombre);
-		alumno.setTelefono(telefono);
-		alumno.setObservaciones(observaciones);
-		alumno.setRepetidor(repetiBool);
-		return alumno;
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido1() {
+		return this.apellido1;
+	}
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+	public String getApellido2() {
+		return this.apellido2;
+	}
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+	public String getNif() {
+		return this.nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
+
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getCorreo() {
+		return this.correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public Boolean getRepetidor() {
+		return this.repetidor;
+	}
+
+	public void setRepetidor(Boolean repetidor) {
+		this.repetidor = repetidor;
+	}
+
+	public Date getFechaAlta() {
+		return this.fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public Date getFechaBaja() {
+		return this.fechaBaja;
+	}
+
+	public void setFechaBaja(Date fechaBaja) {
+		this.fechaBaja = fechaBaja;
+	}
+
+	public String getObservaciones() {
+		return this.observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
 	}
 
 	public String getFechaAltaString() {
-		if (getFechaAlta() != null) {
-			return Long.toString(getFechaAlta().getTime());
+		if (this.fechaAlta != null) {
+			return Long.toString(this.fechaAlta.getTime());
 		} else {
 			return "";
 		}
 	}
 
 	public String getFechaBajaString() {
-		if (getFechaBaja() != null) {
-			return Long.toString(getFechaBaja().getTime());
+		if (this.fechaBaja != null) {
+			return Long.toString(this.fechaBaja.getTime());
 		} else {
 			return "";
 		}
@@ -115,13 +209,23 @@ public class AlumnoForm extends Alumno {
 
 	public void setFechaAltaString(String fechaString) {
 		Long timeStamp = Long.parseLong(fechaString);
-		setFechaAlta(new Date(timeStamp));
+		this.fechaAlta = (new Date(timeStamp));
 
 	}
 
 	public void setFechaBajaString(String fechaString) {
 		Long timeStamp = Long.parseLong(fechaString);
-		setFechaBaja(new Date(timeStamp));
+		this.fechaBaja = (new Date(timeStamp));
+
+	}
+
+	public static AlumnoForm obtenerAlumnoForm(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void validar(ArrayList<String> errores) {
+		// TODO Auto-generated method stub
 
 	}
 }
