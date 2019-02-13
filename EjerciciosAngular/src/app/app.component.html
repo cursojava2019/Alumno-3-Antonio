@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    ¡Primeros ejercicios de {{ title }}!
+  </h1>
+  <img  alt="Angular Logo" src="http://www.autoescuelajuanchu.com/images/logo5.png">
+</div>
+<div style="text-align:center">
+  <app-dado posicion="{{posicion1}}"></app-dado>
+  <app-dado posicion="{{posicion2}}"></app-dado>
+  <app-dado posicion="{{posicion3}}"></app-dado>
+  <hr>
+  <button (click)="tirar()">Tirar dados</button>
+  <hr>
+</div>
+
+<router-outlet></router-outlet>

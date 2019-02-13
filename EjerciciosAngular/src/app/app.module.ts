@@ -1,19 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MiComponenteComponent } from './mi-componente/mi-componente.component';
-import { GestorTareasComponent } from './gestor-tareas/gestor-tareas.component';
-import { TareaComponent } from './gestor-tareas/tarea/tarea.component';
+import { Ejercicio1Component } from './ejercicio1/ejercicio1.component';
+import { Ejercicio2Component } from './ejercicio2/ejercicio2.component';
+import { DadoComponent } from './ejercicio3/dado/dado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MiComponenteComponent,
-    GestorTareasComponent,
-    TareaComponent
+    Ejercicio1Component,
+    Ejercicio2Component,
+    DadoComponent
   ],
   imports: [
     BrowserModule,
