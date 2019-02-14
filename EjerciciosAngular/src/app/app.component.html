@@ -5,13 +5,21 @@
   </h1>
   <img  alt="Angular Logo" src="http://www.autoescuelajuanchu.com/images/logo5.png">
 </div>
+<hr>
+<app-ejercicio1></app-ejercicio1>
+<hr>
+<app-ejercicio2></app-ejercicio2>
+<hr>
 <div style="text-align:center">
+  <h1>Ejercicio 3</h1>
+  <h3>Realizar una app en angular  que muestre tres dados. Crear una componente llamado dado  además de la componente que crea por defecto Angular CLI.</h3>
   <app-dado posicion="{{posicion1}}"></app-dado>
   <app-dado posicion="{{posicion2}}"></app-dado>
   <app-dado posicion="{{posicion3}}"></app-dado>
-  <hr>
+<br>
   <button (click)="tirar()">Tirar dados</button>
   <hr>
 </div>
+<app-formulario (hidden)='botonEnviar($event)'></app-formulario>
 
 <router-outlet></router-outlet>

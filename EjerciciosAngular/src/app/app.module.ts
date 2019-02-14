@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { Ejercicio1Component } from './ejercicio1/ejercicio1.component';
 import { Ejercicio2Component } from './ejercicio2/ejercicio2.component';
 import { DadoComponent } from './ejercicio3/dado/dado.component';
+import { FormularioComponent } from './ejercicio4/formulario/formulario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Ejercicio1Component,
     Ejercicio2Component,
-    DadoComponent
+    DadoComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,

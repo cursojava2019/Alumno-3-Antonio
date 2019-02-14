@@ -15,13 +15,4 @@ export class Ejercicio1Component implements OnInit {
 
   ngOnInit() {
   }
-
-  ponerNombreEntrada() {
-    this.nombre = this.nombreEntrada;
-  }
-
-  ponerApellidosEntrada() {
-    this.apellidos = this.apellidosEntrada;
-  }
-
 }

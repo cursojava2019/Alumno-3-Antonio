@@ -10,6 +10,9 @@ export class AppComponent {
   posicion1: number;
   posicion2: number;
   posicion3: number;
+  botonEnviar(hidden: boolean) {
+    console.log ( + hidden);
+  }
   constructor() {
     this.posicion1 = this.retornarAleatorio();
     this.posicion2 = this.retornarAleatorio();
