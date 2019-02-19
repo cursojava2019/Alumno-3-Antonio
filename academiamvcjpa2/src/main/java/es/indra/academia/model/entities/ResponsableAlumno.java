@@ -1,45 +1,53 @@
 package es.indra.academia.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the responsable_alumno database table.
  * 
  */
 @Entity
-@Table(name="responsable_alumno")
-@NamedQuery(name="ResponsableAlumno.findAll", query="SELECT r FROM ResponsableAlumno r")
+@Table(name = "responsable_alumno")
+@NamedQuery(name = "ResponsableAlumno.findAll", query = "SELECT r FROM ResponsableAlumno r")
 public class ResponsableAlumno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private Long id;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String apellido1;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String apellido2;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String correo;
 
-	@Column(length=9)
+	@Column(length = 9)
 	private String nif;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String nombre;
 
-	@Column(length=20)
+	@Column(length = 20)
 	private String telefono;
 
-	//bi-directional many-to-one association to Alumno
-	@OneToMany(mappedBy="responsableAlumno", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to Alumno
+	@OneToMany(mappedBy = "responsable", fetch = FetchType.EAGER)
 	private List<Alumno> alumnos;
 
 	public ResponsableAlumno() {
@@ -111,14 +119,14 @@ public class ResponsableAlumno implements Serializable {
 
 	public Alumno addAlumno(Alumno alumno) {
 		getAlumnos().add(alumno);
-		alumno.setResponsableAlumno(this);
+		alumno.setResponsable(this);
 
 		return alumno;
 	}
 
 	public Alumno removeAlumno(Alumno alumno) {
 		getAlumnos().remove(alumno);
-		alumno.setResponsableAlumno(null);
+		alumno.setResponsable(null);
 
 		return alumno;
 	}

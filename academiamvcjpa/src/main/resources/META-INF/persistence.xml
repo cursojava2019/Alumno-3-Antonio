@@ -6,11 +6,18 @@
 
   <persistence-unit name="JPAUnit" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>es.indra.academia.model.entities.Alumno</class>
+    <class>model.entities.Alumno</class>
+    <class>model.Alumno</class>
+    <class>model.Asignatura</class>
+    <class>model.Clase</class>
+    <class>model.Curso</class>
+    <class>model.Profesor</class>
+    <class>model.ResponsableAlumno</class>
+    <class>model.Tarifa</class>
     <properties>
         <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
     </properties>
-    
+   
   </persistence-unit>
-
+  
 </persistence>

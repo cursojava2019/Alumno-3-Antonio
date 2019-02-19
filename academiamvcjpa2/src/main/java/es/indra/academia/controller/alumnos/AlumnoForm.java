@@ -1,9 +1,9 @@
 package es.indra.academia.controller.alumnos;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -12,6 +12,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import es.indra.academia.model.entities.Alumno;
+import es.indra.academia.model.entities.ResponsableAlumno;
 
 public class AlumnoForm {
 	@Positive
@@ -34,11 +35,12 @@ public class AlumnoForm {
 	private String correo;
 	private Boolean repetidor;
 	@PastOrPresent
-	private Date fechaAlta;
+	private Calendar fechaAlta;
 
-	private Date fechaBaja;
+	private Calendar fechaBaja;
 	@Size(min = 0, max = 500)
 	private String observaciones;
+	private ResponsableAlumno responsable;
 
 	public AlumnoForm() {
 		super();
@@ -63,8 +65,8 @@ public class AlumnoForm {
 		this.correo = (a.getCorreo());
 		this.observaciones = (a.getObservaciones());
 		this.repetidor = (a.getRepetidor());
-		this.fechaAlta = (a.getFechaalta());
-		this.fechaBaja = (a.getFechaalta());
+		this.fechaAlta = (a.getFechaAlta());
+		this.fechaBaja = (a.getFechaBaja());
 	}
 
 	public Alumno obtenerAlumno() {
@@ -78,8 +80,8 @@ public class AlumnoForm {
 		a.setCorreo(getCorreo());
 		a.setObservaciones(getObservaciones());
 		a.setRepetidor(getRepetidor());
-		a.setFechaalta(getFechaAlta());
-		a.setFechabaja(getFechaBaja());
+		a.setFechaAlta(getFechaAlta());
+		a.setFechaBaja(getFechaBaja());
 		return a;
 	}
 
@@ -167,19 +169,19 @@ public class AlumnoForm {
 		this.repetidor = repetidor;
 	}
 
-	public Date getFechaAlta() {
+	public Calendar getFechaAlta() {
 		return this.fechaAlta;
 	}
 
-	public void setFechaAlta(Date fechaAlta) {
+	public void setFechaAlta(Calendar fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Date getFechaBaja() {
+	public Calendar getFechaBaja() {
 		return this.fechaBaja;
 	}
 
-	public void setFechaBaja(Date fechaBaja) {
+	public void setFechaBaja(Calendar fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
 
@@ -193,7 +195,7 @@ public class AlumnoForm {
 
 	public String getFechaAltaString() {
 		if (this.fechaAlta != null) {
-			return Long.toString(this.fechaAlta.getTime());
+			return Long.toString(this.fechaAlta.getTimeInMillis());
 		} else {
 			return "";
 		}
@@ -201,7 +203,7 @@ public class AlumnoForm {
 
 	public String getFechaBajaString() {
 		if (this.fechaBaja != null) {
-			return Long.toString(this.fechaBaja.getTime());
+			return Long.toString(this.fechaAlta.getTimeInMillis());
 		} else {
 			return "";
 		}
@@ -209,23 +211,26 @@ public class AlumnoForm {
 
 	public void setFechaAltaString(String fechaString) {
 		Long timeStamp = Long.parseLong(fechaString);
-		this.fechaAlta = (new Date(timeStamp));
+		Calendar c = new GregorianCalendar();
+		c.setTime(new Date(timeStamp));
+		this.fechaAlta = c;
 
 	}
 
 	public void setFechaBajaString(String fechaString) {
 		Long timeStamp = Long.parseLong(fechaString);
-		this.fechaBaja = (new Date(timeStamp));
+		Calendar c = new GregorianCalendar();
+		c.setTime(new Date(timeStamp));
+		this.fechaBaja = c;
 
 	}
 
-	public static AlumnoForm obtenerAlumnoForm(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponsableAlumno getResponsable() {
+		return this.responsable;
 	}
 
-	public void validar(ArrayList<String> errores) {
-		// TODO Auto-generated method stub
-
+	public void setResponsable(ResponsableAlumno responsable) {
+		this.responsable = responsable;
 	}
+
 }

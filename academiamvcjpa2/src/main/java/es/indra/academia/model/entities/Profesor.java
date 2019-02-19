@@ -1,48 +1,56 @@
 package es.indra.academia.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the profesor database table.
  * 
  */
 @Entity
-@Table(name="profesor")
-@NamedQuery(name="Profesor.findAll", query="SELECT p FROM Profesor p")
+@Table(name = "profesor")
+@NamedQuery(name = "Profesor.findAll", query = "SELECT p FROM Profesor p")
 public class Profesor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private Long id;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String apellido1;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String apellido2;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String correo;
 
-	@Column(length=9)
+	@Column(length = 9)
 	private String nif;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String nombre;
 
-	@Column(length=9)
+	@Column(length = 9)
 	private String telefono;
 
-	@Column(length=100)
+	@Column(length = 100)
 	private String titulacion;
 
-	//bi-directional many-to-one association to Clase
-	@OneToMany(mappedBy="profesor", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to Clase
+	@OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
 	private List<Clase> clases;
 
 	public Profesor() {

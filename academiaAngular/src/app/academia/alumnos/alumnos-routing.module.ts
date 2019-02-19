@@ -8,9 +8,10 @@ const routes: Routes = [
   {
       path: '',
       component: AlumnosComponent,
-  },
-  { path: 'crear', component: CrearAlumnoComponent },
-  { path: 'modificar/:idAlumno', component: ModificarAlumnoComponent }
+   },
+   { path: 'crear', component: CrearAlumnoComponent },
+   { path: 'modificar/:idAlumno', component: ModificarAlumnoComponent }
+
 ];
 
 @NgModule({

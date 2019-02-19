@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import es.indra.academia.model.dao.ProfesorDao;
-import es.indra.academia.model.entities.Alumno;
 import es.indra.academia.model.entities.Profesor;
 import es.indra.academia.model.support.Dao;
 import es.indra.academia.model.support.DaoException;
@@ -25,7 +24,7 @@ public class ProfesorService extends Service<Long, Profesor> {
 		return this.dao;
 	}
 
-	public List<Alumno> findProfesorPatron(String patron) {
+	public List<Profesor> findProfesorPatron(String patron) {
 		try {
 			return this.dao.findProfesor(patron);
 		} catch (DaoException e) {

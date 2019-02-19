@@ -6,7 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-        
+
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Nuevo Alumno</h1>
@@ -27,7 +27,8 @@
                                 
                                     	<form:form action="./nuevo.html" method="post" modelAttribute="alumno" >
                                     	<form:hidden path="id" />
-                                       	<spring:hasBindErrors name="*"> HAY ERRORRES QUE RESOLVER</spring:hasBindErrors>
+                                    	<spring:hasBindErrors name="*"> HAY ERRORRES QUE RESOLVER</spring:hasBindErrors>
+                                       
                                         <div class="form-group">
                                             <label>NIF</label>
                                            <form:input path="nif" class="form-control"/>
@@ -35,7 +36,7 @@
                                             <p class="help-block"></p>
                                         </div>
                                         <div class="form-group">
-                                            <label><spring:message code="alumno.nombre"/></label>
+                                             <label><spring:message code="alumno.nombre"/></label>
                                              <form:input path="nombre" class="form-control"/>
                                              <form:errors path="nombre" element="div" cssClass="alert alert-danger"/>
                                             <p class="help-block"></p>
@@ -69,15 +70,14 @@
                                         </c:set> </c:if>
                                         <div class="form-group">
                                             <div class="checkbox">
-                                                <label>
+                                                <label>Repetidor</label>
                                                     <form:checkbox path="repetidor"/>
                                                     <form:errors path="repetidor" element="div" cssClass="alert alert-danger"/>
-                                                </label>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Observaciones</label>
+                                            <label>Observaciones</label><br/>
                                             <form:textarea path="observaciones" rows="3"/>
                                             <form:errors path="observaciones" element="div" cssClass="alert alert-danger"/>
                                             

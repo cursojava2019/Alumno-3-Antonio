@@ -21,6 +21,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	private static final String CAMPOS = "nif,nombre,apellido1,apellido2,telefono,correo,repetidor,fechaalta,fechabaja,observaciones";
 
+	@Override
 	public void create(Alumno entity) throws DaoException {
 		try {
 			Connection co = Configuracion.getInstance().obtenerConexionBD();
@@ -34,16 +35,16 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 			p.setString(5, entity.getTelefono());
 			p.setString(6, entity.getCorreo());
 			p.setBoolean(7, entity.getRepetidor());
-			if (entity.getFechaAlta() != null) {
-				p.setDate(8, new java.sql.Date(entity.getFechaAlta().getTime()));
-			} else {
-				p.setDate(8, null);
-			}
-			if (entity.getFechaBaja() != null) {
-				p.setDate(9, new java.sql.Date(entity.getFechaBaja().getTime()));
-			} else {
-				p.setDate(9, null);
-			}
+//			if (entity.getFechaAlta() != null) {
+//				p.setDate(8, new java.sql.Date(entity.getFechaAlta().getTime()));
+//			} else {
+//				p.setDate(8, null);
+//			}
+//			if (entity.getFechaBaja() != null) {
+//				p.setDate(9, new java.sql.Date(entity.getFechaBaja().getTime()));
+//			} else {
+//				p.setDate(9, null);
+//			}
 			p.setString(10, entity.getObservaciones());
 			p.executeUpdate();
 			co.close();
@@ -55,6 +56,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	}
 
+	@Override
 	public void update(Alumno entity) throws DaoException {
 
 		try {
@@ -71,16 +73,16 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 			p.setString(5, entity.getTelefono());
 			p.setString(6, entity.getCorreo());
 			p.setBoolean(7, entity.getRepetidor());
-			if (entity.getFechaAlta() != null) {
-				p.setDate(8, new java.sql.Date(entity.getFechaAlta().getTime()));
-			} else {
-				p.setDate(8, null);
-			}
-			if (entity.getFechaBaja() != null) {
-				p.setDate(9, new java.sql.Date(entity.getFechaBaja().getTime()));
-			} else {
-				p.setDate(9, null);
-			}
+//			if (entity.getFechaAlta() != null) {
+//				p.setDate(8, new java.sql.Date(entity.getFechaAlta().getTime()));
+//			} else {
+//				p.setDate(8, null);
+//			}
+//			if (entity.getFechaBaja() != null) {
+//				p.setDate(9, new java.sql.Date(entity.getFechaBaja().getTime()));
+//			} else {
+//				p.setDate(9, null);
+//			}
 			p.setString(10, entity.getObservaciones());
 			p.executeUpdate();
 			co.close();
@@ -92,6 +94,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	}
 
+	@Override
 	public void delete(Long key) throws DaoException {
 		try {
 			Connection co = Configuracion.getInstance().obtenerConexionBD();
@@ -108,6 +111,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 
 	}
 
+	@Override
 	public Alumno find(Long key) throws DaoException {
 		Alumno alumno = null;
 		try {
@@ -130,6 +134,7 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 		}
 	}
 
+	@Override
 	public List<Alumno> findAll() throws DaoException {
 		try {
 			Connection co = Configuracion.getInstance().obtenerConexionBD();
@@ -178,8 +183,8 @@ public class AlumnoDao implements Dao<Long, Alumno> {
 		alumno.setApellido2(apellido2);
 		alumno.setTelefono(telefono);
 		alumno.setCorreo(correo);
-		alumno.setFechaAlta(fechaAlta);
-		alumno.setFechaBaja(fechaBaja);
+//		alumno.setFechaAlta(fechaAlta);
+//		alumno.setFechaBaja(fechaBaja);
 		alumno.setRepetidor(repetidor);
 		alumno.setObservaciones(observaciones);
 

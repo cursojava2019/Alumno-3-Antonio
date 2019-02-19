@@ -6,8 +6,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-
-
 <c:if test="${param.mensaje eq 'correcto'}">
  <c:set var="mensajeOK" value="true" ></c:set>
 </c:if>
@@ -16,16 +14,15 @@
  <c:set var="mensajeError" value="true" ></c:set>
 </c:if>
 
+
 	<script>
 	function confirmarEliminacion(id){
 		if (confirm("¿Está seguro que desea eliminar este alumno?")){
 			location.href='${ruta}/admin/alumnos/eliminar.html?id='+id;
 		}
-		
-		
 	}
 	</script>
-   
+
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Alumnos</h1>
@@ -110,10 +107,6 @@
             
             </div>
             
-            
-            
-        
-  
 	 <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({

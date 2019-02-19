@@ -63,8 +63,8 @@
 </div>
 
 <div class="form-group">
-    <label class="form-control-label" for="observaciones">observaciones Electrónico</label>
-    <textarea class="form-control"  placeholder="Introduzca el observaciones Electrónico" formControlName="observaciones" [ngClass]="{'is-invalid': miFormulario.get('observaciones').dirty && !miFormulario.get('observaciones').valid }"></textarea>
+    <label class="form-control-label" for="observaciones">Observaciones</label>
+    <textarea class="form-control"  placeholder="Introduzca sus observaciones" formControlName="observaciones" [ngClass]="{'is-invalid': miFormulario.get('observaciones').dirty && !miFormulario.get('observaciones').valid }"></textarea>
       <div *ngIf="miFormulario.get('observaciones').dirty && miFormulario.get('observaciones').errors"  class="alert alert-danger">
           <p *ngIf="miFormulario.get('observaciones').hasError('maxlength')">El tamaño máximo es de 1000 caracteres</p>
 

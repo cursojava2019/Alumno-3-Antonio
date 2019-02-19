@@ -1,9 +1,7 @@
 package controller.alumnos;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -63,8 +61,8 @@ public class AlumnoForm {
 		this.correo = (a.getCorreo());
 		this.observaciones = (a.getObservaciones());
 		this.repetidor = (a.getRepetidor());
-		this.fechaAlta = (a.getFechaAlta());
-		this.fechaBaja = (a.getFechaBaja());
+//		this.fechaAlta = (a.getFechaAlta());
+//		this.fechaBaja = (a.getFechaBaja());
 	}
 
 	public Alumno obtenerAlumno() {
@@ -78,8 +76,8 @@ public class AlumnoForm {
 		a.setCorreo(getCorreo());
 		a.setObservaciones(getObservaciones());
 		a.setRepetidor(getRepetidor());
-		a.setFechaAlta(getFechaAlta());
-		a.setFechaBaja(getFechaBaja());
+//		a.setFechaAlta(getFechaAlta());
+//		a.setFechaBaja(getFechaBaja());
 		return a;
 	}
 
@@ -216,16 +214,6 @@ public class AlumnoForm {
 	public void setFechaBajaString(String fechaString) {
 		Long timeStamp = Long.parseLong(fechaString);
 		this.fechaBaja = (new Date(timeStamp));
-
-	}
-
-	public static AlumnoForm obtenerAlumnoForm(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void validar(ArrayList<String> errores) {
-		// TODO Auto-generated method stub
 
 	}
 }
