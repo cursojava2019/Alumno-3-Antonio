@@ -16,6 +16,12 @@ export class CrearProfesorComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  crear(p: Profesor) {
+     this.profesorService.create(p).subscribe(data => {
+      this.router.navigate(['profesores']);
+     });
+  }
 
   crear(p: Profesor) {
      this.profesorService.create(p).subscribe(data => {
