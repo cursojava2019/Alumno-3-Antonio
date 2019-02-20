@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfesoresComponent } from './profesores.component';
-// import { CrearProfesorComponent } from './crear-profesor/crear-profesor.component';
 import { ModificarProfesorComponent } from './modificar-profesor/modificar-profesor.component';
 import { CrearProfesorComponent } from './crear-profesor/crear-profesor.component';
 

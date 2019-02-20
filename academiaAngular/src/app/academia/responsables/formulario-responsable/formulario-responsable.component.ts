@@ -1,23 +1,23 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Responsable } from 'src/app/shared/entities/responsable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Alumno } from 'src/app/shared/entities/alumno';
 
 @Component({
-  selector: 'app-formulario-alumno',
-  templateUrl: './formulario-alumno.component.html',
-  styleUrls: ['./formulario-alumno.component.scss']
+  selector: 'app-formulario-responsable',
+  templateUrl: './formulario-responsable.component.html',
+  styleUrls: ['./formulario-responsable.component.scss']
 })
-export class FormularioAlumnoComponent implements OnInit {
+export class FormularioResponsableComponent implements OnInit {
 
   miFormulario: FormGroup;
 
   @Input()
   modificar = false;
   @Input()
-  alumnoModificar: Alumno;
+  responsableModificar: Responsable;
 
   @Output()
-  modificado = new EventEmitter<Alumno>();
+  modificado = new EventEmitter<Responsable>();
 
   constructor(private fb: FormBuilder) {
 
@@ -44,28 +44,20 @@ export class FormularioAlumnoComponent implements OnInit {
       ]),
       correo: this.fb.control('', [
         Validators.required, Validators.email
-      ]),
-      repetidor: this.fb.control('', [
-      ]),
-      observaciones: this.fb.control('', [
-        Validators.maxLength(500)
-      ]),
-      fechaAlta: this.fb.control('', [
       ])
     });
     if (this.modificar === true) {
-      this.miFormulario.patchValue(this.alumnoModificar);
+      this.miFormulario.patchValue(this.responsableModificar);
     }
   }
 
   guardarCambios() {
     if (this.modificar === false) {
-      const alumnoForm: Alumno = this.miFormulario.value;
-      alumnoForm.fechaAlta = new Date();
-      this.modificado.next(alumnoForm);
+      const responsableForm: Responsable = this.miFormulario.value;
+      this.modificado.next(responsableForm);
     } else {
-        const alumnoForm: Alumno = this.miFormulario.value;
-        this.modificado.next(alumnoForm);
+        const responsableForm: Responsable = this.miFormulario.value;
+        this.modificado.next(responsableForm);
     }
   }
 }

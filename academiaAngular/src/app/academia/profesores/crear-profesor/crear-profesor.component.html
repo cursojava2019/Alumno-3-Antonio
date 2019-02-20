@@ -1,3 +1,8 @@
-<p>
-  crear-profesor works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Crear nuevo profesor'" [icon]="'fa-edit'"></app-page-header>
+  <div class="row">
+    <div class="col-12">
+        <app-formulario-profesor [modificar]='false' (modificado)="crear($event)"></app-formulario-profesor>
+    </div>
+  </div>
+</div>

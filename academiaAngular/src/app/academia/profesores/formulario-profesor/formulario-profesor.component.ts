@@ -55,8 +55,8 @@ export class FormularioProfesorComponent implements OnInit {
 
   guardarCambios() {
     if (this.modificar === false) {
-    const profesorForm: Profesor = this.miFormulario.value;
-    this.modificado.next(profesorForm);
+      const profesorForm: Profesor = this.miFormulario.value;
+      this.modificado.next(profesorForm);
     } else {
         const profesorForm: Profesor = this.miFormulario.value;
         this.modificado.next(profesorForm);

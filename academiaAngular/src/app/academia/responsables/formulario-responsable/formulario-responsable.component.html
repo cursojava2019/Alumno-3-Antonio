@@ -1,4 +1,4 @@
-<h4>Introduce Alumno</h4>
+<h4>Introduce Responsable</h4>
 
 <div class="jumbotron">
 
@@ -29,8 +29,7 @@
             <p *ngIf="miFormulario.get('apellido1').hasError('required')">El apellido1 es obligatorio</p>
            <p *ngIf="miFormulario.get('apellido1').hasError('minlength')">Por lo menos 3 caracteres</p>
        </div>
-
-</div>
+  </div>
 <div class="form-group">
     <label class="form-control-label" for="apellido2">Segundo Apellido</label>
     <input class="form-control" type="text" placeholder="Introduzca el Segundo Apellido" formControlName="apellido2" [ngClass]="{'is-invalid': miFormulario.get('apellido2').dirty && !miFormulario.get('apellido2').valid }">
@@ -38,7 +37,6 @@
           <p *ngIf="miFormulario.get('apellido2').hasError('required')">El Segundo apellido es obligatorio</p>
          <p *ngIf="miFormulario.get('apellido2').hasError('minlength')">Por lo menos 3 caracteres</p>
      </div>
-
 </div>
 <div class="form-group">
     <label class="form-control-label" for="telefono">Teléfono</label>
@@ -46,12 +44,6 @@
       <div *ngIf="miFormulario.get('telefono').dirty && miFormulario.get('telefono').errors"  class="alert alert-danger">
           <p *ngIf="miFormulario.get('telefono').hasError('required')">Este campo es obligatorio</p>
      </div>
-
-</div>
-<div class="form-group">
-<div class="checkbox">
-  <label class="" for="repetidor"><input  type="checkbox" formControlName="repetidor" > Repetidor </label>
-</div>
 </div>
 <div class="form-group">
     <label class="form-control-label" for="correo">Correo Electrónico</label>
@@ -61,18 +53,8 @@
          <p *ngIf="miFormulario.get('correo').hasError('email')">El formato de Email no es correcto. Ej:"correo@gmail.com"</p>
      </div>
 </div>
-
-<div class="form-group">
-    <label class="form-control-label" for="observaciones">Observaciones</label>
-    <textarea class="form-control"  placeholder="Introduzca sus observaciones" formControlName="observaciones" [ngClass]="{'is-invalid': miFormulario.get('observaciones').dirty && !miFormulario.get('observaciones').valid }"></textarea>
-      <div *ngIf="miFormulario.get('observaciones').dirty && miFormulario.get('observaciones').errors"  class="alert alert-danger">
-          <p *ngIf="miFormulario.get('observaciones').hasError('maxlength')">El tamaño máximo es de 1000 caracteres</p>
-
-     </div>
-</div>
   </fieldset>
-
   <button *ngIf="miFormulario.invalid" class="btn btn-primary" onclick="alert('Hay algún campo pendiente')">Enviar</button>
-  <button  *ngIf="miFormulario.valid" class="btn btn-primary"  type="submit">Enviar</button>
+  <button *ngIf="miFormulario.valid" class="btn btn-primary"  type="submit">Enviar</button>
 </form>
 </div>

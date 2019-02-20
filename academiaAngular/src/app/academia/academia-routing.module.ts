@@ -11,6 +11,7 @@ const routes: Routes = [
           { path: '', loadChildren: './bienvenida/bienvenida.module#BienvenidaModule' },
           { path: 'alumnos', loadChildren: './alumnos/alumnos.module#AlumnosModule' },
           { path: 'profesores', loadChildren: './profesores/profesores.module#ProfesoresModule' },
+          { path: 'responsables', loadChildren: './responsables/responsables.module#ResponsablesModule' },
       ]
   }
 ];

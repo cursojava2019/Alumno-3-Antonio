@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Profesor } from 'src/app/shared/entities/profesor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfesorService } from 'src/app/shared/services/profesor.service';
+import { routerTransition } from 'src/app/router.animations';
 
 @Component({
   selector: 'app-modificar-profesor',
   templateUrl: './modificar-profesor.component.html',
-  styleUrls: ['./modificar-profesor.component.scss']
+  styleUrls: ['./modificar-profesor.component.scss'],
+  animations: [routerTransition()]
 })
 export class ModificarProfesorComponent implements OnInit {
 

@@ -1,6 +1,7 @@
 export class Responsable {
 
-  constructor(public id: number,
+  constructor(
+    public id: number,
     public nombre: string,
     public apellido1: string,
     public apellido2: string,
